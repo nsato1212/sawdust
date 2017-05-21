@@ -1,0 +1,6 @@
+--ui bdd
+--bail
+--check-leaks
+--reporter spec
+--timeout 5000
+--require ./test/setup.js
