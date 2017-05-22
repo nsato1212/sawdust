@@ -4,10 +4,11 @@ import * as util from 'util';
 import {Report} from './report';
 import * as utils from './utils';
 
+
 // overwrite __extends of typescrpt helper function
 const __extends = util.inherits;
 
-export class Command<T extends {}> extends EventEmitter {
+export class Command<T> extends EventEmitter {
 
   /**
    * @private
@@ -216,14 +217,19 @@ export class Command<T extends {}> extends EventEmitter {
   }
 
   /**
-   * @param {Command~Task} task
+   * @param {Command~Task|Command~Task[]} task
    * @return {Command}
    */
-  addTask(task: Command.Task): this {
-    if (typeof task !== 'function') {
-      throw new TypeError(`invalid parameter. [job: funciton]: ${typeof task}`);
-    }
-    this.tasks.push(task);
+  addTask(task: Command.Task): this;
+  addTask(tasks: Array<Command.Task>): this;
+  addTask(tasks: Command.Task|Array<Command.Task>): this {
+    tasks = utils.normalizeArray(tasks);
+    tasks.forEach((task) => {
+      if (typeof task !== 'function') {
+        throw new TypeError(`invalid parameter. [task: funciton]: ${typeof task}`);
+      }
+      this.tasks.push(task);
+    });
     return this;
   }
 
@@ -382,7 +388,7 @@ function execute(command: Command<any>, tasks: Array<Command.Task>, done: (err?)
       const errand = tasks.shift();
       command.emit(Command.Event.EXECUTE);
       Promise.resolve().then(() => {
-        return errand();
+        return errand.call(command);
       }).then(() => {
         command.emit(Command.Event.INTERVAL);
       }).then(() => {

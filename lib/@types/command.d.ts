@@ -1,7 +1,7 @@
 /// <reference types="node" />
 import { EventEmitter } from 'events';
 import { Report } from './report';
-export declare class Command<T extends {}> extends EventEmitter {
+export declare class Command<T> extends EventEmitter {
     /**
      * @private
      * @param {string} name
@@ -130,10 +130,11 @@ export declare class Command<T extends {}> extends EventEmitter {
      */
     update(props?: Partial<Command.Props>): void;
     /**
-     * @param {Command~Task} task
+     * @param {Command~Task|Command~Task[]} task
      * @return {Command}
      */
     addTask(task: Command.Task): this;
+    addTask(tasks: Array<Command.Task>): this;
     /**
      * @param {string} name
      * @param {Command~Interruption} interrupt
