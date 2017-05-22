@@ -484,9 +484,15 @@ describe('Command', () => {
     });
     it('should execute command and status is going to "completed"', () => {
       var command = new Command('completed command');
-      command.addTask(() => {
-        command.getReport().set('result', 1);
-      });
+      command.addTask([
+        () => {
+          command.getReport().set('result', 1);
+          assert.notEqual(command, this);
+        },
+        function() {
+          assert.equal(command, this)
+        }
+      ]);
       return Promise.resolve().then(() => {
         return command.execute();
       }).then(() => {
