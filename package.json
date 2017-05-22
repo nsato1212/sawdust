@@ -3,17 +3,17 @@
   "description": "a command pattern utility.",
   "version": "0.0.1",
   "author": "Noriki Satoh <noriki.satoh@gmail.com>",
-  "main": "./lib/index.js",
   "engines": {
     "node": ">=4.0.0"
   },
   "files": [
     "README.md",
-    "LISENCE"
+    "LISENCE",
     "package.json",
     "lib"
   ],
   "license": "MIT",
+  "main": "./lib/index.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:nsato1212/sawdust.git"
@@ -25,6 +25,7 @@
     "test-cov-win": "node node_modules\\istanbul\\lib\\cli.js cover node_modules\\mocha\\bin\\_mocha",
     "remap": "remap-istanbul --input coverage/coverage.json --output coverage/lcov-report-typescript --type html"
   },
+  "types": "./lib/@types/index.d.ts",
   "devDependencies": {
     "@types/node": "^7.0.18",
     "istanbul": "^0.4.5",
