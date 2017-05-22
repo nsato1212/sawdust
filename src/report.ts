@@ -1,5 +1,5 @@
 
-export class Report<T extends {}> {
+export class Report<T> {
 
   /**
    * @private
@@ -15,6 +15,7 @@ export class Report<T extends {}> {
     if ('object' !== typeof params) {
       throw TypeError(`invalid parameter. [params: Object]: ${typeof params}`);
     }
+
     this.props = Object.assign({}, params as T);
   }
 

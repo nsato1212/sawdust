@@ -1,4 +1,4 @@
-export declare class Report<T extends {}> {
+export declare class Report<T> {
     /**
      * @private
      * @member {Object}
