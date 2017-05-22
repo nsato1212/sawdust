@@ -29,7 +29,7 @@ export declare class Worker extends EventEmitter {
     /**
      * @constructor
      * @param {Object} [options]
-     * @param {number} [options.capacity=0]
+     * @param {number} [options.size=0]
      */
     constructor(options?: Partial<Worker.Option>);
     /**

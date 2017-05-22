@@ -20,11 +20,11 @@
         "outDir": "lib"
     },
     "files": [
-      "src/command.ts",
-      "src/index.ts",
-      "src/report.ts",
-      "src/worker.ts",
-      "src/utils.ts"
+        "src/command.ts",
+        "src/index.ts",
+        "src/report.ts",
+        "src/worker.ts",
+        "src/utils.ts"
     ],
     "compileOnSave": true,
     "buildOnSave": false,
